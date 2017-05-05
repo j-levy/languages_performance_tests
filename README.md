@@ -10,6 +10,7 @@ Ce test a été écrit en :
 - C avec OpenCV (accès aux pixels manuellement)
 - Python avec Numpy
 - Scala avec ImageIO (Java)
+
 Il est envisagé d'écrire ce test également en Go.
 
 # Pourquoi
