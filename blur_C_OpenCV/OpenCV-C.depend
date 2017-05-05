@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1493129726 source:/home/jonathan/Documents/[ORANGE] Dossier Industriel/programmes/OpenCV-C/main.cpp
+	<opencv2/core/core.hpp>
+	<opencv2/imgproc/imgproc.hpp>
+	<opencv2/highgui/highgui.hpp>
+	<time.h>
+
