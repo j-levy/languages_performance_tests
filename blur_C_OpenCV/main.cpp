@@ -53,8 +53,15 @@ void flou(Mat *img)
 
 int main(int argc, char *argv[])
 {
+	Mat img;
+	if (argc == 2)
+	{
     // on lit l'image en niveaux de gris
-    Mat img = imread("tearsofsteel_low.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+    std::string img_name = argv[1];
+    img = imread(img_name, CV_LOAD_IMAGE_GRAYSCALE);
+    } else {
+    img = imread("tearsofsteel_low.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+    }
     // on vérifie que l'image a bien été lue.
     if(img.empty())
        return -1;
