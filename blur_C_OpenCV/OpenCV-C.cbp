@@ -13,8 +13,8 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add option="`pkg-config opencv --cflags --libs`" />
-					<Add directory="/usr/local_static/include/opencv2" />
+					<Add option="-ldl -lm -lpthread -lrt -lstdc++ -lpng -lz -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo  -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lglib-2.0 -lrt" />
+					<Add directory="/usr/local/include/opencv2" />
 				</Compiler>
 				<Linker>
 					<Add library="/usr/local_static/lib/libopencv_videostab.a" />
@@ -33,7 +33,13 @@
 					<Add library="/usr/local_static/lib/libopencv_features2d.a" />
 					<Add library="/usr/local_static/lib/libopencv_core.a" />
 					<Add library="/usr/local_static/lib/libopencv_calib3d.a" />
-					<Add directory="/usr/local_static/lib" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibwebp.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibtiff.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibjpeg.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibjasper.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/libippicv.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/libIlmImf.a" />
+					<Add directory="/usr/local/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
