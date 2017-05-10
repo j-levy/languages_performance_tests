@@ -11,7 +11,8 @@ Ce test a été écrit en :
 - Python avec Numpy
 - Scala avec ImageIO (Java)
 
-Il est envisagé d'écrire ce test également en Go.
+Il est envisagé d'écrire ce test également en Go
+Il est également envisagé de réécrire le test Scala en Java afin de permettre son exécution (chose ardue avec Scala actuellement...)
 
 # Pourquoi
 

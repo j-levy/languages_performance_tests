@@ -13,26 +13,27 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="/usr/local/include/opencv2" />
+					<Add option="`pkg-config opencv --cflags --libs`" />
+					<Add directory="/usr/local_static/include/opencv2" />
 				</Compiler>
 				<Linker>
-					<Add library="/usr/local/lib/libopencv_calib3d.so" />
-					<Add library="/usr/local/lib/libopencv_core.so" />
-					<Add library="/usr/local/lib/libopencv_features2d.so" />
-					<Add library="/usr/local/lib/libopencv_flann.so" />
-					<Add library="/usr/local/lib/libopencv_highgui.so" />
-					<Add library="/usr/local/lib/libopencv_imgcodecs.so" />
-					<Add library="/usr/local/lib/libopencv_imgproc.so" />
-					<Add library="/usr/local/lib/libopencv_ml.so" />
-					<Add library="/usr/local/lib/libopencv_objdetect.so" />
-					<Add library="/usr/local/lib/libopencv_photo.so" />
-					<Add library="/usr/local/lib/libopencv_shape.so" />
-					<Add library="/usr/local/lib/libopencv_stitching.so" />
-					<Add library="/usr/local/lib/libopencv_superres.so" />
-					<Add library="/usr/local/lib/libopencv_video.so" />
-					<Add library="/usr/local/lib/libopencv_videoio.so" />
-					<Add library="/usr/local/lib/libopencv_videostab.so" />
-					<Add directory="/usr/local/lib" />
+					<Add library="/usr/local_static/lib/libopencv_videostab.a" />
+					<Add library="/usr/local_static/lib/libopencv_videoio.a" />
+					<Add library="/usr/local_static/lib/libopencv_video.a" />
+					<Add library="/usr/local_static/lib/libopencv_superres.a" />
+					<Add library="/usr/local_static/lib/libopencv_stitching.a" />
+					<Add library="/usr/local_static/lib/libopencv_shape.a" />
+					<Add library="/usr/local_static/lib/libopencv_photo.a" />
+					<Add library="/usr/local_static/lib/libopencv_objdetect.a" />
+					<Add library="/usr/local_static/lib/libopencv_ml.a" />
+					<Add library="/usr/local_static/lib/libopencv_imgproc.a" />
+					<Add library="/usr/local_static/lib/libopencv_imgcodecs.a" />
+					<Add library="/usr/local_static/lib/libopencv_highgui.a" />
+					<Add library="/usr/local_static/lib/libopencv_flann.a" />
+					<Add library="/usr/local_static/lib/libopencv_features2d.a" />
+					<Add library="/usr/local_static/lib/libopencv_core.a" />
+					<Add library="/usr/local_static/lib/libopencv_calib3d.a" />
+					<Add directory="/usr/local_static/lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -52,7 +53,6 @@
 		<Linker>
 			<Add option="`opencv-config --ldstaticflags`" />
 		</Linker>
-		<Unit filename="lena.jpg" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />
