@@ -9,11 +9,10 @@ Il s'agit d'une convolution d'un noyau de 3x3 sur une image en niveaux de gris e
 Ce test a été écrit en :
 - C avec OpenCV (accès aux pixels manuellement)
 - Python avec Numpy
-- Scala avec ImageIO (Java)
+- Scala avec ImageIO (sous forme de script)
+- Java avec ImageIO (sous forme de bytecode en JAR)
 
-Il est envisagé d'écrire ce test également en Go
-Il est également envisagé de réécrire le test Scala en Java afin de permettre son exécution (chose ardue avec Scala actuellement...)
-
+Il est envisagé d'écrire ce test également en Go.
 # Pourquoi
 
 Ces programmes de test servent d'outil de mesure de consommation pour un dossier industriel proposé par Orange Labs (Lannion). Le problème est de quantifier la consommation d'un ordinateur (représentant un serveur) suivant les langages et la qualité de l'écriture du code.
