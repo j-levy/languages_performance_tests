@@ -2,14 +2,19 @@
 
 -- Create server
 srv = net.createServer(net.TCP) 
-srv:listen(80,function(conn)    
+srv:listen(80,function(conn)   
+ 
 conn:on("receive",function(conn,payload) 
     print("payload : \n"..payload)
 
     for line in string.gmatch(payload,'[^\r\n]+') do
-        s = string.find(line, "GET /&")
-        print(s)
-        -- If query is there, control robot
+        if string.find(line, "&measure_headless") then
+            dofile("measure_headless.lua")
+        end
+        if string.find(line, "&measure_LCD") then
+            dofile("measure_LCD.lua")
+        end        
+        
         
        
         if string.find(line, "GET /index.html") then
@@ -22,10 +27,10 @@ conn:on("receive",function(conn,payload)
                 conn:send(s)
             end
             file.close()
-        elseif string.find(line, "GET /bob.html") then
-            file.open("bob.html", "r")
+        elseif string.find(line, "GET /ESP8266.jpg") then
+            file.open("ESP8266.jpg", "r")
             while true do
-                s = file.read(1460)
+                s = file.read(100)
                 if s == nil then
                     break
                 end
@@ -33,14 +38,7 @@ conn:on("receive",function(conn,payload)
             end
             file.close()
         else
-            conn:send("NO PAGE FOUND.")
-            i = 0
-            for i=1, 5 do
-                conn:send("STILL NO PAGE AFTER "..i.."TRIES.")
-                time = tmr.now
-                while tmr.now < time+1000000 do
-                end
-            end  
+            conn:send("NO PAGE FOUND.") 
         end
         break
     end
