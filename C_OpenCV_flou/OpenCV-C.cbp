@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="OpenCV-C" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/OpenCV-C" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-ldl -lm -lpthread -lrt -lstdc++ -lpng -lz -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo  -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lglib-2.0 -lrt" />
+					<Add directory="/usr/local/include/opencv2" />
+				</Compiler>
+				<Linker>
+					<Add library="/usr/local_static/lib/libopencv_videostab.a" />
+					<Add library="/usr/local_static/lib/libopencv_videoio.a" />
+					<Add library="/usr/local_static/lib/libopencv_video.a" />
+					<Add library="/usr/local_static/lib/libopencv_superres.a" />
+					<Add library="/usr/local_static/lib/libopencv_stitching.a" />
+					<Add library="/usr/local_static/lib/libopencv_shape.a" />
+					<Add library="/usr/local_static/lib/libopencv_photo.a" />
+					<Add library="/usr/local_static/lib/libopencv_objdetect.a" />
+					<Add library="/usr/local_static/lib/libopencv_ml.a" />
+					<Add library="/usr/local_static/lib/libopencv_imgproc.a" />
+					<Add library="/usr/local_static/lib/libopencv_imgcodecs.a" />
+					<Add library="/usr/local_static/lib/libopencv_highgui.a" />
+					<Add library="/usr/local_static/lib/libopencv_flann.a" />
+					<Add library="/usr/local_static/lib/libopencv_features2d.a" />
+					<Add library="/usr/local_static/lib/libopencv_core.a" />
+					<Add library="/usr/local_static/lib/libopencv_calib3d.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibwebp.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibtiff.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibjpeg.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/liblibjasper.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/libippicv.a" />
+					<Add library="/usr/local/share/OpenCV/3rdparty/lib/libIlmImf.a" />
+					<Add directory="/usr/local/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/OpenCV-C" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-s" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="`opencv-config --cxxflags`" />
+		</Compiler>
+		<Linker>
+			<Add option="`opencv-config --ldstaticflags`" />
+		</Linker>
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
