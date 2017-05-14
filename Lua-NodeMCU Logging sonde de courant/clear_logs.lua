@@ -1,7 +1,9 @@
-for i, v in ipairs(logs) do 
-    print(i, v)
-    file.remove(v)
-end
-for i,v in ipairs(logs) do
-    table.remove(logs,i)
+
+
+l = file.list()
+for k,v in pairs(l) do
+    print("name:"..k..", size:"..v)
+    if string.find(k, "meas_") then
+        file.remove(k)
+    end
 end

@@ -1,10 +1,9 @@
-wifi.setmode(wifi.STATION)
-wifi.sta.config("YOUR_NETWORK_NAME","YOUR_NETWORK_PASSWORD")
-print(wifi.sta.getip())
+
 led1 = 3
 led2 = 4
 gpio.mode(led1, gpio.OUTPUT)
 gpio.mode(led2, gpio.OUTPUT)
+
 srv=net.createServer(net.TCP)
 srv:listen(80,function(conn)
     conn:on("receive", function(client,request)

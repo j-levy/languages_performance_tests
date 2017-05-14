@@ -17,14 +17,12 @@ gpio.mode(5,gpio.INPUT,gpio.PULLUP)
 gpio.write(6,gpio.HIGH)
 
 
--- Logging of every filename created
-logs = {}
+-- global values to control access
+tmr_measure = tmr.create()
+flag_stop = false
 
+-- Lancement de l'application
 print("Switch state : "..gpio.read(5))
 print("Launch server...")
 dofile("AP_server.lua")
-print("Server launched.")
--- print("Launching headless logged measure...")
--- dofile("measure_headless.lua")
-
-
+print("Server launched")
