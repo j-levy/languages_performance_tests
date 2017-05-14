@@ -61,7 +61,6 @@ if running then
 else
         -- open file in flash:
     filename = "meas_"..tmr.time()..".txt"
-    table.insert(logs, filename) -- deprecated
     
     log = file.open("last_measure.html", "w+") --clear file, create if needed, Read+Write
     
