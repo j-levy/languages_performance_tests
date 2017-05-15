@@ -23,6 +23,7 @@ flag_stop = false
 
 -- Lancement de l'application
 print("Switch state : "..gpio.read(5))
-print("Launch server...")
-dofile("AP_server.lua")
-print("Server launched")
+print("Please launch a server...")
+local server = "AP_server_plusplus.lua"
+dofile(server)
+print("Server "..server.." launched")

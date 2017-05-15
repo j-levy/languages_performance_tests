@@ -1,5 +1,4 @@
 
-
 -- Create server
 srv = net.createServer(net.TCP) 
 srv:listen(80,function(conn)   
@@ -8,6 +7,10 @@ conn:on("receive",function(conn,payload)
     print("payload : \n"..payload)
     -- récupérer les liste des fichiers. Pour trouver un fichier à afficher
     l = file.list()
+    sending = nil
+    sending_size = 0
+    file_found = false
+    DataToGet = 0
     
     for line in string.gmatch(payload,'[^\r\n]+') do
         -- actions par lancement de scripts
@@ -23,21 +26,20 @@ conn:on("receive",function(conn,payload)
         --afficher un fichier
         if string.find(line, "GET /") then   
             -- trouver le fichier à afficher
-            local file_found = false
             
             for name, size in pairs(l) do
                 if string.find(line, "GET /"..name) then
+                    print("Give : "..name..", size : "..size)
+                    DataToGet = size
+                    sending_size = size
                     file_found = true
-                    file.open(name, "r")
-                    --while true do
-                        s = file.read(1400)
-                        file.close()
-                        if s == nil then
-                            break
-                        end
-                        conn:send(s)
-                        
-                    --end
+                    sending = name
+                    
+                    file.open(name, "r")                   
+                    s = file.read(1400)
+                    DataToGet = DataToGet - 1400
+                    file.close()
+                    conn:send(s)
                     
                     break -- ne pas tester les autres fichiers
                 end
@@ -75,25 +77,26 @@ conn:on("receive",function(conn,payload)
         end
         break
     end
+    
     conn:on("sent",function(conn) 
-    if file_found then
+    if file_found and sending and DataToGet > 0 then
         
-        if file.open(file_name_to_send, "r") then          
-            file.seek("set", DataToGet)
+        if file.open(sending, "r") then          
+            file.seek("set", sending_size - DataToGet)
             local line=file.read(512)
+            DataToGet = DataToGet - 512
             file.close()
             if line then
                 conn:send(line)
-                DataToGet = DataToGet + 512    
-
                 if (string.len(line)==512) then
                     return
                 end
             end
         end        
+        
     end
 
-    conn:close() 
+    conn:close()
     end)
 end)
 end)
