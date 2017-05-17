@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     std::string img_name = argv[1];
     img = imread(img_name, CV_LOAD_IMAGE_GRAYSCALE);
     } else {
-    img = imread("tearsofsteel_low.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+    img = imread("tearsofsteel.jpg", CV_LOAD_IMAGE_GRAYSCALE);
     }
     // on vérifie que l'image a bien été lue.
     if(img.empty())
@@ -75,7 +75,10 @@ int main(int argc, char *argv[])
 
     // lancer le flou, chronométrer le temps pris
     startTime = clock();                                  /* Lancement de la mesure */
-    flou(&img);
+    // executer 5x le flou
+    for (int i = 0; i < 5; i++)
+        flou(&img);
+
     endTime = clock();                                    /* Arrêt de la mesure     */
 
     elapsed = ((double)endTime - startTime) / CLOCKS_PER_SEC; /* Conversion en secondes  */

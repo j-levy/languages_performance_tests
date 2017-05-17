@@ -47,21 +47,27 @@ def blur(img: BufferedImage) : BufferedImage = {
 
 def apply_blur() {
   // read original image, and obtain width and height
-  val photo1 = ImageIO.read(new File("tearsofsteel_low.jpg"))
+  val photo1 = ImageIO.read(new File("tearsofsteel.jpg"))
 
-  val photo2 = toGray(photo1)//
-  val photo3 =  time{blur(photo2)}
+  var photo2 = toGray(photo1)
+
+
+  val photo3 =  time{  for (p <- 1 until 5) {
+      photo2 = blur(photo2)
+    }
+      photo2}
 
   // save image to file "test.jpg"
-  ImageIO.write(photo3, "jpg", new File("test.jpg"))
+  ImageIO.write(photo3, "jpg", new File("output.jpg"))
 
-
+/*
   val Window1 = new JFrame("Image d'origine")
 
   Window1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
-  Window1.paint(photo1.getGraphics)
+  Window1.
   Window1.pack()
   Window1.setVisible(true)
+*/
 
 }
 
@@ -74,4 +80,3 @@ def time[R](block: => R): R = {
 }
 
 apply_blur()
-

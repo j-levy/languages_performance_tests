@@ -62,11 +62,13 @@ def applique_flou(fichier_image):
     
     # faire une copie. Permet d'afficher l'une et de modifier l'autre
     image_orig = np.copy(image)
+    image_floue = np.copy(image)
     
     #chronométrer l'application du flou
     print "Application du flou"
-    a = time.clock()
-    image_floue = flou(image)
+    a = time.clock()    
+    for i in range(0,5): #executer 5 fois
+        image_floue = flou(image_floue)
     b = time.clock()
     print b-a
     
