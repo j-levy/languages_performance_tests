@@ -12,7 +12,7 @@ local function acquisition()
         
 
         -- copier dans un autre fichier
-        log = file.open("last_measure.html", "r")        
+        log = file.open("last_measure.html", "a+")        
         local final_log = file.open(filename, "w+") --clear file, create if needed, Read+Write
         
         while true do
@@ -22,8 +22,10 @@ local function acquisition()
                 end
                 final_log:write(s)
         end
+        
         log:close()
         final_log:close()
+        dofile("duplicate_file.lua")
         return
 
     end
@@ -35,7 +37,7 @@ local function acquisition()
     
     -- logger
     if log then
-      log:write(cjson.encode({t=counter*delay/1000 , v=print_measure}).."\n")
+      log:write(cjson.encode({x=counter*delay/1000 , y=print_measure})..",\n")
     end
 
 
@@ -62,7 +64,7 @@ else
     delay = 1000 --ms
     
     if log then
-      log:write(cjson.encode({filename=filename}).."\n")
+      --log:write(cjson.encode({filename=filename}).."\n")
     else
       print("File unavailable")
     end
@@ -71,3 +73,4 @@ else
     tmr_measure:register(delay, tmr.ALARM_AUTO, function() acquisition() end )
     tmr_measure:start()
 end
+
