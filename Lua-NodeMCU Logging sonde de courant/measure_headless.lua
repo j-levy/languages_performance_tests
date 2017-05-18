@@ -24,12 +24,6 @@ local function acquisition()
         end
         log:close()
         final_log:close()
-
-        -- inscrire le nom du fichier dans la liste des logs
-        loglist = file.open("log_list.txt", "a+")
-        loglist:write(filename.."\n")
-        loglist:close()
-                
         return
 
     end
@@ -38,11 +32,10 @@ local function acquisition()
     measure = measure - 8
     measure = (measure/1024)*3.123/(0.100) --Mise à l'echelle (VDD=3.1V), puis 0.1V/A
     print_measure = (math.floor(measure*10000))/10000 -- arrondi pour éviter les soucis d'affichage
-
-
+    
     -- logger
     if log then
-      log:write(cjson.encode({time=counter*delay/1000,measure=print_measure}).."\n")
+      log:write(cjson.encode({t=counter*delay/1000 , v=print_measure}).."\n")
     end
 
 
@@ -69,7 +62,7 @@ else
     delay = 1000 --ms
     
     if log then
-      log:write(cjson.encode({filename=filename,delay=delay}).."\n")
+      log:write(cjson.encode({filename=filename}).."\n")
     else
       print("File unavailable")
     end

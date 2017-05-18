@@ -5,7 +5,7 @@ srv:listen(80,function(conn)
  
 conn:on("receive",function(conn,payload) 
     print("payload : \n"..payload)
-    -- récupérer les liste des fichiers. Pour trouver un fichier à afficher
+    -- récup����rer les liste des fichiers. Pour trouver un fichier à afficher
     l = file.list()
     sending = nil
     sending_size = 0
@@ -39,11 +39,16 @@ conn:on("receive",function(conn,payload)
                     s = file.read(1400)
                     DataToGet = DataToGet - 1400
                     file.close()
-                    conn:send(s)
+                    if s then
+                        conn:send(s)
+                    else
+                        conn:send("Fichier créé mais vide.")
+                    end
                     
                     break -- ne pas tester les autres fichiers
                 end
             end
+            
 
             
             if string.find(line, "GET /measure_list.html") then
@@ -72,7 +77,7 @@ conn:on("receive",function(conn,payload)
             if file_found then
                 break --ne pas lire le payload plus loin
             else
-                conn:send("404 : Page not found.")
+                conn:send("404")
             end
         end
         break
@@ -83,12 +88,12 @@ conn:on("receive",function(conn,payload)
         
         if file.open(sending, "r") then          
             file.seek("set", sending_size - DataToGet)
-            local line=file.read(512)
-            DataToGet = DataToGet - 512
+            local line=file.read(1400)
+            DataToGet = DataToGet - 1400
             file.close()
             if line then
                 conn:send(line)
-                if (string.len(line)==512) then
+                if (string.len(line)==1400) then
                     return
                 end
             end
