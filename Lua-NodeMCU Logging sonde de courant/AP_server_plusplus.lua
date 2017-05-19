@@ -22,6 +22,8 @@ conn:on("receive",function(conn,payload)
             dofile("clear_logs.lua")
         elseif string.find(line, "&measure_stop") then
             flag_stop = true
+        elseif string.find(line, "&duplicate_file") then
+            dofile("duplicate_file.lua")
         end
         --afficher un fichier
         if string.find(line, "GET /") then   
@@ -77,7 +79,7 @@ conn:on("receive",function(conn,payload)
             if file_found then
                 break --ne pas lire le payload plus loin
             else
-                conn:send("404")
+                conn:send("<!DOCTYPE html><html><head><meta http-equiv=\"refresh\" content=\"1;URL=/index.html\"></head><body></body></html>")
             end
         end
         break

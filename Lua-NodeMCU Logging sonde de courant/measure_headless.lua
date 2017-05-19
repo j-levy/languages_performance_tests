@@ -69,7 +69,6 @@ else
       print("File unavailable")
     end
     
-
     tmr_measure:register(delay, tmr.ALARM_AUTO, function() acquisition() end )
     tmr_measure:start()
 end

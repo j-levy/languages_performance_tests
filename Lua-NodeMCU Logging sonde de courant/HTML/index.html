@@ -3,23 +3,101 @@
   <head>
     <title>Lecture de sonde de courant</title>
     <meta charset="UTF-8">
+
+    <style>
+        * {
+    box-sizing: border-box;
+}
+.header, .footer {
+    background-color: gray;
+    color: white;
+    padding: 15px;
+    }
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.menuL {
+    float: left;
+    width: 100%;
+}
+.menuR {
+    float: right;
+    width: 100%;
+}
+.menuL ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menuR ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+    
+        .button_green {
+            float: left;
+            width: 100%;
+            
+            background-color: #4CAF50;
+            border-style: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 32px;
+            margin: 0px 0px;
+            cursor: pointer;
+        }
+        .button_green:hover{
+            background-color : #2B9030
+        }
+        .button_blue {
+            float: right;
+            width: 100%;
+            background-color: #4F83BD;
+            border-style: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 32px;
+            margin: 0px 0px;
+            cursor: pointer;
+        }
+        .button_blue:hover{
+            background-color : #16365C
+        }
+    </style>
+    
   </head>
-  <body bgcolor=white>
+  <body bgcolor=lightgray>
 
-
+    <div class="header">
     <h1>Lecture d'une sonde de courant</h1>
-
+    </div>
     
     <p>Ce serveur permet de lancer l'acquisition de données par une sonde de courant.</p>
-    <p>Cliquez sur le lien pour la lancer
+    <p>
+    <div class="clearfix">
+    <div class="menuL">
     <ul>
-      <li><a href="index.html&measure_headless">Lancer une mesure silencieuse</a>
-      <li><a href="index.html&measure_LCD">Lancer une mesure avec affichage sur écran LCD</a>.
-      <li><a href="index.html&measure_stop">Arrêter la mesure en cours</a>
-      <li><a href="index.html&clear_logs">Effacer les mesures faites</a>
-      <li><a href="afficheur.html">Afficher la dernière mesure sous forme de graphe (chargement long)</a>
-      <li><a href="measure_list.html">Afficher toutes les mesures stockées</a>
+      <li><a href="index.html&measure_headless" class="button_green">Lancer une mesure silencieuse</a>
+      <li><a href="index.html&measure_LCD" class="button_green">Lancer une mesure avec affichage sur écran LCD</a>
+      <li><a href="index.html&measure_stop" class="button_green">Arrêter la mesure en cours</a>
     </ul>
-
+    </div>
+    <div class="menuR">
+    <ul>
+      <li><a href="index.html&clear_logs" class="button_blue">Effacer toutes les mesures faites</a>
+      <li><a href="afficheur.html&duplicate_file" class="button_blue">Afficher la dernière mesure sous forme de graphe (chargement long)</a>
+      <li><a href="measure_list.html" class="button_blue">Afficher toutes les mesures stockées</a>
+    </ul>
+    </div>
+    </div>
   </body>
 </html>

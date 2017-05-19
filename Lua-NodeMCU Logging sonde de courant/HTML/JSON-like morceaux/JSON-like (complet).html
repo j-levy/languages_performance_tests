@@ -30,7 +30,7 @@
                     animationEnabled: true,
                     axisX: {
                         //valueFormatString: "#,###.###",
-                        interval:1,
+                        interval:0.1,
                         intervalType: "seconds"
 
                     },
@@ -43,4 +43,20 @@
                             type: "line",
                             lineThickness: 3,
                             dataPoints: [
-                            
+                                {"x":7,"y":0},
+                                {"x":8,"y":0},
+                            ]
+                        }
+
+
+                    ]
+                });
+
+            chart.render();
+        }
+    </script>
+</head>
+<body>
+<div id="chartContainer" style="height: 100%; width: 100%;"></div>
+</body>
+</html>

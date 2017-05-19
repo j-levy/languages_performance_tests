@@ -3,7 +3,7 @@ node.setcpufreq(160)
 local afficheur = file.open("afficheur.html", "w+") --clear file, create if needed, Read+Write
 print("duplicate started.")
 while true do
-        s = ressource:read(6000)
+        s = ressource:read(1500)
         if s == nil then
             break
         end

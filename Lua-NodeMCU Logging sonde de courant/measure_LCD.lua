@@ -23,7 +23,7 @@ end
 local function acquisition()  
  
     if gpio.read(5) == 1 or flag_stop then
-        flag_stop = false --rearmement
+        flag_stop=false --rearmement
         tmr_measure:unregister()
         tmr_measure:stop()
         print("Mesure terminee !")
@@ -31,7 +31,7 @@ local function acquisition()
         
 
         -- copier dans un autre fichier
-        local log = file.open("last_measure.html", "r")        
+        log = file.open("last_measure.html", "a+")        
         local final_log = file.open(filename, "w+") --clear file, create if needed, Read+Write
         
         while true do
@@ -41,14 +41,10 @@ local function acquisition()
                 end
                 final_log:write(s)
         end
+        
         log:close()
         final_log:close()
-
-        -- inscrire le nom du fichier dans la liste des logs
-        loglist = file.open("log_list.txt", "a+")
-        loglist:write(filename.."\n")
-        loglist:close()
-                
+        dofile("duplicate_file.lua")
         return
 
     end
@@ -61,7 +57,7 @@ local function acquisition()
 
     -- logger
     if log then
-      log:write(cjson.encode({time=counter*delay/1000,measure=print_measure}).."\n")
+      log:write(cjson.encode({x=counter*delay/1000 , y=print_measure})..",\n")
     end
 
 
@@ -85,7 +81,7 @@ else
     delay = 1000 --ms
     
     if log then
-      log:write(cjson.encode({filename=filename,delay=delay}).."\n")
+      --log:write(cjson.encode({filename=filename,delay=delay}).."\n")
     else
       print("File unavailable")
     end
