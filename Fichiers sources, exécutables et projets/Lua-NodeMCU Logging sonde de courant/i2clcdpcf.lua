@@ -1,3 +1,7 @@
+-- Bibliothèque pour écrire sur un écran LCD connecté en I2C à travers un pont LCD-I2C de référence PCF8574.
+-- Créé par l'utilisateur The Black Talon sur le site de création de contenu vidéo Youtube : https://www.youtube.com/watch?v=tAmXCLPoMfM
+-- Lien de téléchargement dans la description.
+
 local moduleName = ...
 
 local M = {}

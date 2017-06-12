@@ -4,13 +4,19 @@ import javax.swing.*;
 
 public class Main {
 
+	
     public static void main(String[] args) {
         String filename;
         int looping = 5;
+        
+        /*
+        Sans arguments, le programme exécute 5 flous sur l'image appelée "tearsofsteel.jpg".
+        1er argument possible : un nombre, donnant le nombre de flous à appliquer
+        2e argument possible : un nom de fichier image sur lequel appliquer les flous.
+        */
         if(args.length == 1)
         {
-
-            System.out.println("No looping specified, applying blur 5 times by default");
+            System.out.println("Pas de paramètre de nombre de flous à exécuter, applique 5 flous par défaut\n");
             filename = args[0];
 
         } else if(args.length == 2)
@@ -22,17 +28,18 @@ public class Main {
         else
         {
 
-            System.out.println("No image specified, taking tearsofsteel.jpg as default.");
-            System.out.println("No looping specified, applying blur 5 times by default");
+            System.out.println("Pas d'image spécifiée, utilise tearsofsteel.jpg par défaut\n");
+            System.out.println("Pas de paramètre de nombre de flous à exécuter, applique 5 flous par défaut\n");
             filename = "tearsofsteel.jpg";
         }
-        System.out.printf("File : %s, loops : %d\n", filename, looping);
+        System.out.printf("Fichier : %s, Nombre de flous : %d\n", filename, looping);
 
+		// Crée une première fenêtre pour afficher l'image d'origine.
         JFrame Window1 = new JFrame("Image d'origine");
 
         Window1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         /*
-        // Alternatively, exit whole program when any window is closed !
+        // Autrement, peut fermer le programme complet sur fermeture d'une fenêtre
         Window1.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -40,37 +47,40 @@ public class Main {
         });
         */
 
+		// Charge l'image d'origine
         LoadImageApp ImageOrig = new LoadImageApp(filename);
-        ImageOrig.toGray();
+        ImageOrig.toGray(); // conversion en niveaux de gris
+        // Afficher l'image
         Window1.add(ImageOrig);
         Window1.pack();
         Window1.setVisible(true);
 
 
 
-        // 2nd window
+        // 2eme fenêtre pour l'image floutée
 
         JFrame Window2 = new JFrame("Image floutée");
 
         Window2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-
+		// Chargement de l'image pour la flouter
         LoadImageApp ImageBlur = new LoadImageApp(filename);
         ImageBlur.toGray();
 
+		// Application des flous. Chronométrage. avec System.nanoTime()
         long t0 = System.nanoTime();
         for (int i = 0; i < looping; i++) {
             ImageBlur.blur();
         }
         long t1 = System.nanoTime();
 
+		// on affiche l'image
         Window2.add(ImageBlur);
         Window2.pack();
         Window2.setVisible(true);
-
-
-
-        System.out.println("Elapsed time: " + (t1 - t0)/1E9 + " s");
+        
+        // On affiche dans la console d'exécution le temps mis pour le flou
+        System.out.println("Temps d'exécution des flous : " + (t1 - t0)/1E9 + " s");
 
     }
 }

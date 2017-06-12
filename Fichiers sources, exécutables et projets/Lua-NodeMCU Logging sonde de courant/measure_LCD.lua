@@ -9,7 +9,7 @@ lcd.setBacklight(1)
 lcd.setCursor(0,0)
 lcd.print("Pince amperemetrique")
 lcd.setCursor(0,2)
-lcd.print("Courant (A) : ")
+lcd.print("Puissance (W) : ")
 lcd.setCursor(0,1)
 lcd.print("Mesure en cours :")
 
@@ -32,7 +32,7 @@ local function acquisition()
 
         -- copier dans un autre fichier
         log = file.open("last_measure.html", "a+")        
-        local final_log = file.open(filename, "w+") --clear file, create if needed, Read+Write
+        local final_log = file.open(filename, "w+") --efface le fichier, le crée au besoin, mode Read+Write
         
         while true do
                 s = log:read(1460)
@@ -51,7 +51,7 @@ local function acquisition()
     
     measure = adc.read(0)
     measure = measure - 8
-    measure = (measure/1024)*3.123/(0.100) --Mise à l'echelle (VDD=3.1V), puis 0.1V/A
+    measure = 12*(measure/1024)*3.123/(0.100) --Mise à l'echelle (VDD=3.1V), puis 0.1V/A
     local print_measure = (math.floor(measure*10000))/10000 -- arrondi pour éviter les soucis d'affichage
 
 
@@ -61,7 +61,7 @@ local function acquisition()
     end
 
 
-    print("Courant : "..print_measure.." A") --debug, permet de voir dans la console
+    print("Puissance : "..print_measure.." W") --debug, permet de voir dans la console
     LCD_disp_meas(print_measure)
     
     counter = counter + 1
@@ -72,9 +72,9 @@ running, mode = tmr_measure:state()
 if running then
     print("mesure déjà lancée")
 else
-        -- open file in flash:
+        -- ouvrir le fichier dans la mémoire :
     filename = "meas_"..tmr.time()..".txt"
-    log = file.open("last_measure.html", "w+") --clear file, create if needed, Read+Write
+    log = file.open("last_measure.html", "w+") --efface le fichier, le crée au besoin, mode Read+Write
     
     measure = 0
     counter = 0
@@ -83,7 +83,7 @@ else
     if log then
       --log:write(cjson.encode({filename=filename,delay=delay}).."\n")
     else
-      print("File unavailable")
+      print("Fichier non disponible")
     end
 
     tmr_measure:register(delay, tmr.ALARM_AUTO, function() acquisition() end )

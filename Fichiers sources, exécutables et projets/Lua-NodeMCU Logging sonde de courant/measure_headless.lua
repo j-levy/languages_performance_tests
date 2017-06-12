@@ -32,7 +32,7 @@ local function acquisition()
     
     measure = adc.read(0)
     measure = measure - 8
-    measure = (measure/1024)*3.123/(0.100) --Mise à l'echelle (VDD=3.1V), puis 0.1V/A
+    measure = 12*(measure/1024)*3.123/(0.100) --Mise à l'echelle (VDD=3.1V), puis 0.1V/A
     print_measure = (math.floor(measure*10000))/10000 -- arrondi pour éviter les soucis d'affichage
     
     -- logger
@@ -66,7 +66,7 @@ else
     if log then
       --log:write(cjson.encode({filename=filename}).."\n")
     else
-      print("File unavailable")
+      print("Fichier non disponible")
     end
     
     tmr_measure:register(delay, tmr.ALARM_AUTO, function() acquisition() end )
